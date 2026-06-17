@@ -1,0 +1,537 @@
+.app-shell {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  pointer-events: none;
+}
+
+.monitor-frame {
+  position: relative;
+  display: block;
+  width: 100vw;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.topbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100vw;
+  min-width: 0;
+  min-height: 52px;
+  padding: 14px 18px 8px 18px;
+  border-bottom: 0;
+  border-radius: 0;
+  -webkit-app-region: drag;
+  pointer-events: auto;
+}
+
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 8px;
+}
+
+.brand-lockup > div {
+  min-width: 0;
+}
+
+.brand-mark {
+  display: grid;
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  color: #ffffff;
+  font-weight: 900;
+  border: 1px solid rgba(255, 255, 255, 0.86);
+  border-radius: 9px;
+  font-size: 9px;
+  background: linear-gradient(135deg, #f4a8bd, #86d8c6);
+  box-shadow: 0 8px 18px rgba(206, 125, 153, 0.24);
+}
+
+.brand-lockup h1 {
+  max-width: 190px;
+  overflow: hidden;
+  color: #3b3541;
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 1.1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.brand-lockup p {
+  display: none;
+}
+
+.topbar-actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  -webkit-app-region: no-drag;
+}
+
+.workspace {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  padding: 0;
+  overflow: visible;
+  pointer-events: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumb-bg) transparent;
+}
+
+.workspace > .overview,
+.dashboard-board,
+.primary-dashboard,
+.module-dashboard-grid,
+.detail-layer.is-open,
+.settings-layer.is-open {
+  pointer-events: auto;
+}
+
+.overview {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  min-height: 100%;
+}
+
+.single-dashboard-overview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 0;
+  place-items: center;
+  pointer-events: auto;
+}
+
+.dashboard-board {
+  position: relative;
+  display: block;
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+
+.dashboard-board.has-modules {
+  width: 100%;
+}
+
+.dashboard-board.has-modules .primary-dashboard {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.primary-dashboard {
+  display: grid;
+  align-content: start;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  gap: 10px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  min-width: 0;
+  height: 100%;
+  padding: 58px 18px 14px;
+  overflow: hidden;
+}
+
+.module-dashboard-grid {
+  position: fixed;
+  top: 0;
+  right: auto;
+  bottom: auto;
+  left: 0;
+  z-index: 30;
+  display: block;
+  width: 100vw;
+  min-width: 0;
+  height: 100vh;
+  max-height: none;
+  gap: 8px;
+  padding: 0;
+  overflow: visible;
+  pointer-events: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumb-bg) transparent;
+}
+
+.panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-width: 0;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.panel-header h2,
+.panel-header h3 {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-size: 15px;
+  font-weight: 720;
+}
+
+.panel-header p {
+  margin-top: 3px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.detail-layer,
+.settings-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: none;
+  pointer-events: none;
+}
+
+.module-window-body {
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  padding: 0;
+  overflow: hidden;
+}
+
+.module-window-root {
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumb-bg) transparent;
+}
+
+.module-window-root .module-panel {
+  position: static !important;
+  width: max(100vw, 380px);
+  height: max(100vh, 320px);
+  max-width: none;
+  min-width: 380px;
+  min-height: 320px;
+  margin: 0;
+  animation: none;
+  overflow: auto;
+  transform: none !important;
+}
+
+.module-window-root .module-panel-head {
+  -webkit-app-region: drag;
+}
+
+.module-window-root .module-panel-actions,
+.module-window-root .module-window-control,
+.module-window-root .module-close-control,
+.module-window-root button,
+.module-window-root input {
+  -webkit-app-region: no-drag;
+}
+
+.module-window-root .overlay-backdrop {
+  display: none;
+}
+
+.module-window-root .settings-panel {
+  position: static;
+  width: max(100vw, 380px);
+  height: max(100vh, 320px);
+  max-width: none;
+  min-width: 380px;
+  min-height: 320px;
+  opacity: 1;
+  overflow: auto;
+  transform: none;
+}
+
+.module-window-root .drawer-header {
+  -webkit-app-region: drag;
+}
+
+.module-window-root .settings-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+}
+
+.module-window-root .drawer-header button,
+.module-window-root .settings-body button,
+.module-window-root .settings-body input {
+  -webkit-app-region: no-drag;
+}
+
+.detail-layer.is-open,
+.settings-layer.is-open {
+  display: block;
+  pointer-events: auto;
+}
+
+.overlay-backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 78% 16%, rgba(8, 156, 147, 0.12), transparent 28%),
+    var(--overlay-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.detail-panel,
+.settings-panel {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  width: min(520px, calc(100vw - 20px));
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 32px;
+  opacity: 0;
+  transform: translate3d(18px, 0, 0) scale(0.985);
+  transition: opacity 160ms ease, transform 160ms ease;
+  will-change: opacity, transform;
+}
+
+.detail-layer.is-open .detail-panel,
+.settings-layer.is-open .settings-panel {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.detail-body,
+.settings-body {
+  min-height: 0;
+  padding: 0 16px 16px;
+  overflow: auto;
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 0;
+  gap: 12px;
+  padding: 16px;
+}
+
+.drawer-title {
+  min-width: 0;
+}
+
+.drawer-title h2 {
+  overflow: hidden;
+  font-size: 18px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.drawer-title p {
+  margin-top: 4px;
+  overflow: hidden;
+  color: var(--text-secondary);
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+}
+
+@media (max-width: 680px) {
+  body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+
+  .app-shell {
+    width: 100vw;
+    max-width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  .monitor-frame {
+    width: 100%;
+  }
+
+  .dashboard-board,
+  .dashboard-board.has-modules {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding-bottom: 8px;
+  }
+
+  .primary-dashboard {
+    width: 100%;
+    min-height: 0;
+    height: 100%;
+    padding: 58px 12px 12px;
+  }
+
+  .module-dashboard-grid {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    min-width: 0;
+    max-height: none;
+    overflow: visible;
+    padding: 8px 0 0;
+    pointer-events: auto;
+  }
+
+  .topbar {
+    width: 100%;
+  }
+
+  .topbar {
+    min-height: 54px;
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .brand-lockup {
+    gap: 10px;
+  }
+
+  .brand-mark {
+    flex-basis: 36px;
+    width: 36px;
+    height: 36px;
+    border-radius: 15px;
+    font-size: 13px;
+  }
+
+  .brand-lockup h1 {
+    max-width: none;
+    font-size: 17px;
+    line-height: 1.15;
+  }
+
+  .brand-lockup p {
+    max-width: none;
+    margin-top: 3px;
+    font-size: 11px;
+  }
+
+  .topbar-actions {
+    gap: 6px;
+  }
+
+  .topbar .icon-button {
+    min-width: 34px;
+    min-height: 34px;
+    padding: 0 8px;
+  }
+
+  .workspace {
+    padding: 10px;
+    overflow: hidden;
+  }
+
+  .overview .metric-card {
+    padding: 11px 12px;
+  }
+
+  .overview .metric-card::after {
+    top: -34px;
+    right: -30px;
+    width: 88px;
+    height: 88px;
+  }
+
+  .panel-header {
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .panel-header h2,
+  .panel-header h3 {
+    font-size: 14px;
+  }
+
+  .panel-header p {
+    font-size: 11px;
+  }
+
+  .detail-panel,
+  .settings-panel {
+    inset: 8px;
+    width: auto;
+    border-radius: 26px;
+  }
+}
+
+@media (max-width: 460px) {
+  .app-shell {
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .topbar {
+    min-height: 52px;
+    padding: 8px;
+    border-radius: 22px;
+  }
+
+  .brand-lockup {
+    gap: 8px;
+  }
+
+  .brand-mark {
+    flex-basis: 32px;
+    width: 32px;
+    height: 32px;
+    border-radius: 14px;
+    font-size: 12px;
+  }
+
+  .brand-lockup h1 {
+    font-size: 16px;
+  }
+
+  .topbar .icon-button {
+    min-width: 32px;
+    min-height: 32px;
+    padding: 0 7px;
+  }
+
+  .overview .metric-card {
+    min-height: 76px;
+    padding: 10px;
+  }
+
+}
+
+@media (max-width: 380px) {
+  .brand-lockup p {
+    display: none;
+  }
+
+}

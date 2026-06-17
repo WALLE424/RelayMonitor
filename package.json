@@ -1,0 +1,68 @@
+{
+  "name": "relay-monitor",
+  "productName": "中转站监控",
+  "version": "0.1.0",
+  "description": "中文 Windows 中转站真实请求、余额和用量监控桌面工具。",
+  "main": "src/main/app.js",
+  "private": true,
+  "license": "MIT",
+  "type": "commonjs",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "check": "node --check src/main/app.js && node --check src/main/balance-login.js && node --check src/main/companion-tracker.js && node --check src/main/windows.js && node --check src/main/tray.js && node --check src/main/ipc.js && node --check src/preload/index.js && node --check src/relay/ccswitch-db.js && node --check src/relay/provider-config.js && node --check src/relay/balance-client.js && node --check src/relay/web-balance-client.js && node --check src/relay/usage-summary-client.js && node --check src/relay/snapshot.js && node --check src/collectors/cache-stats.js && node --check src/collectors/context-usage.js && node --check src/shared/time.js && node --check src/shared/secrets.js && node --check src/renderer/app.js && node --check src/renderer/module-window.js && node --check src/renderer/companion.js && node --check src/renderer/views/overview.js && node --check src/renderer/views/request-detail.js && node --check src/renderer/views/settings.js && node --check src/renderer/charts/trend.js && node --check scripts/diagnose-snapshot.js && node --check scripts/capture-ui-preview.js",
+    "smoke": "electron . --smoke",
+    "test": "node --test tests/main/*.test.js tests/relay/*.test.js tests/collectors/*.test.js tests/renderer/*.test.js",
+    "dist:win": "electron-builder --win --x64",
+    "pack": "electron-builder --dir",
+    "clean": "powershell -ExecutionPolicy Bypass -File scripts/build.ps1 -CleanOnly",
+    "diagnose": "node scripts/diagnose-snapshot.js",
+    "preview": "electron scripts/capture-ui-preview.js"
+  },
+  "build": {
+    "appId": "com.walle.relaymonitor",
+    "productName": "中转站监控",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "package.json",
+      "README.zh-CN.md"
+    ],
+    "win": {
+      "icon": "src/assets/icons/app-icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "installerIcon": "src/assets/icons/app-icon.ico",
+      "uninstallerIcon": "src/assets/icons/app-icon.ico",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "publish": null
+  },
+  "devDependencies": {
+    "electron": "^42.2.0",
+    "electron-builder": "^26.8.1"
+  },
+  "dependencies": {
+    "chokidar": "^3.6.0"
+  },
+  "engines": {
+    "node": ">=18.17"
+  }
+}

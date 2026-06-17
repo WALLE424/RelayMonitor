@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relay Monitor</title>
+    <link rel="stylesheet" href="./styles/base.css" />
+    <link rel="stylesheet" href="./styles/layout.css" />
+    <link rel="stylesheet" href="./styles/components.css" />
+  </head>
+  <body class="dashboard-only">
+    <div class="app-shell" id="app">
+      <section class="monitor-frame">
+        <header class="topbar">
+          <div class="brand-lockup">
+            <div class="brand-mark" aria-hidden="true">RM</div>
+            <div>
+              <h1>Relay Monitor</h1>
+              <p id="app-status">正在读取中转站状态</p>
+            </div>
+          </div>
+          <div class="topbar-actions">
+            <button class="icon-button window-control-button" id="minimize-button" type="button" title="最小化" aria-label="最小化">
+              <span aria-hidden="true">&#8722;</span>
+            </button>
+            <button class="icon-button window-control-button" id="hide-button" type="button" title="隐藏到后台" aria-label="隐藏到后台">
+              <span aria-hidden="true">&#9633;</span>
+            </button>
+            <button class="icon-button close-window-button window-control-button" id="close-button" type="button" title="关闭" aria-label="关闭">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </header>
+
+        <main class="workspace" id="view-root" aria-live="polite"></main>
+      </section>
+      <aside class="detail-layer" id="detail-root" aria-live="polite"></aside>
+      <aside class="settings-layer" id="settings-root" aria-live="polite"></aside>
+    </div>
+
+    <script src="./components/ui.js"></script>
+    <script src="./charts/trend.js"></script>
+    <script src="./views/overview.js"></script>
+    <script src="./views/request-detail.js"></script>
+    <script src="./views/settings.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

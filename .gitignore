@@ -1,0 +1,23 @@
+node_modules/
+dist/
+out/
+tmp/
+.env
+.env.*
+*.log
+*.tmp
+coverage/
+test-output/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Electron / local runtime
+*.asar
+*.asar.unpacked/
+
+# Sensitive local data
+data/
+secrets.json
+settings.local.json

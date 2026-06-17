@@ -1,0 +1,34 @@
+{
+  "capturedAt": "2026-06-16T10:48:50.821Z",
+  "balanceMode": "web-session",
+  "provider": {
+    "name": "demo-relay",
+    "baseUrl": "https://relay.example.cn/v1",
+    "model": "gpt-5.5",
+    "reasoningEffort": "high"
+  },
+  "balance": {
+    "status": "auth-required",
+    "amount": null,
+    "source": "web-session",
+    "endpoint": "https://relay.example.cn/console"
+  },
+  "tokens": {
+    "cached": 123456,
+    "daily": 24567,
+    "weekly": 156789,
+    "monthly": 456789,
+    "input": 234567,
+    "output": 34567,
+    "total": 392590
+  },
+  "spend": {
+    "today": 1.23,
+    "week": 8.76,
+    "month": 23.45,
+    "total": 67.89,
+    "source": "ccswitch-usage-rollups",
+    "status": "fallback-request-log"
+  },
+  "trendFlat": false
+}

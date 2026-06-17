@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>余额登录页面</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: "Microsoft YaHei", "Segoe UI", sans-serif;
+        --bg: rgba(255, 255, 255, 0.94);
+        --bg-strong: rgba(255, 255, 255, 0.78);
+        --text: #302834;
+        --muted: #6c6270;
+        --accent: #f08aaa;
+        --line: rgba(220, 135, 161, 0.24);
+      }
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+      }
+      body {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        box-sizing: border-box;
+        background:
+          radial-gradient(circle at top left, rgba(255, 242, 246, 0.95), transparent 38%),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(255, 247, 251, 0.94));
+        color: var(--text);
+      }
+      main {
+        width: min(680px, calc(100vw - 40px));
+        padding: 28px;
+        border-radius: 24px;
+        background: var(--bg);
+        border: 1px solid var(--line);
+        box-shadow: 0 20px 60px rgba(212, 122, 151, 0.2);
+        backdrop-filter: blur(20px);
+      }
+      h1 {
+        margin: 0 0 10px;
+        font-size: 22px;
+      }
+      p {
+        margin: 8px 0;
+        line-height: 1.7;
+        color: var(--muted);
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 22px;
+      }
+      button {
+        border: 0;
+        border-radius: 999px;
+        padding: 10px 15px;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      button.secondary {
+        background: rgba(54, 45, 58, 0.1);
+        color: var(--text);
+      }
+      .candidate-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 14px;
+      }
+      .candidate-list button {
+        background: var(--bg-strong);
+        color: var(--text);
+        border: 1px solid rgba(54, 45, 58, 0.08);
+      }
+      small {
+        display: block;
+        margin-top: 16px;
+        color: #988a97;
+        word-break: break-all;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1 id="title">正在打开余额登录页</h1>
+      <p id="message">请稍等，窗口会先尝试打开中转站的余额页面。</p>
+      <p>
+        如果系统浏览器里已经能正常登录，你也可以先在那里完成确认，再回到这里继续读取。
+      </p>
+      <div class="actions">
+        <button id="open-external" type="button">用系统浏览器打开</button>
+        <button id="retry-window" class="secondary" type="button">在此窗口重试</button>
+      </div>
+      <div class="candidate-list" id="candidates"></div>
+      <small id="target"></small>
+    </main>
+    <script>
+      (function () {
+        function decodePayload(raw) {
+          if (!raw) return {};
+          try {
+            var normalized = String(raw).replace(/-/g, "+").replace(/_/g, "/");
+            while (normalized.length % 4) normalized += "=";
+            return JSON.parse(decodeURIComponent(escape(atob(normalized))));
+          } catch (_) {
+            try {
+              return JSON.parse(decodeURIComponent(raw));
+            } catch (error) {
+              return {};
+            }
+          }
+        }
+
+        function safeUrl(value) {
+          try {
+            var url = new URL(String(value || ""));
+            if (url.protocol === "http:" || url.protocol === "https:") return url.toString();
+          } catch (_) {}
+          return "";
+        }
+
+        function openExternal(url) {
+          var target = safeUrl(url);
+          if (!target) return;
+          window.open(target, "_blank", "noopener");
+        }
+
+        var payload = decodePayload(new URLSearchParams(location.search).get("payload"));
+        var targetUrl = safeUrl(payload.targetUrl);
+        var candidates = Array.isArray(payload.candidates) ? payload.candidates.map(safeUrl).filter(Boolean) : [];
+        var title = String(payload.title || "正在打开余额登录页");
+        var message = String(payload.message || "请稍等，窗口会先尝试打开中转站的余额页面。");
+
+        document.getElementById("title").textContent = title;
+        document.getElementById("message").textContent = message;
+        document.getElementById("target").textContent = targetUrl ? "目标地址：" + targetUrl : "当前还没有可用的余额地址。";
+        document.getElementById("open-external").addEventListener("click", function () {
+          openExternal(targetUrl || candidates[0]);
+        });
+        document.getElementById("retry-window").addEventListener("click", function () {
+          if (targetUrl) {
+            location.href = targetUrl;
+          } else if (candidates[0]) {
+            location.href = candidates[0];
+          } else {
+            location.reload();
+          }
+        });
+
+        var container = document.getElementById("candidates");
+        candidates.forEach(function (url) {
+          var button = document.createElement("button");
+          button.type = "button";
+          button.textContent = url.replace(/^https?:\/\//, "");
+          button.addEventListener("click", function () {
+            location.href = url;
+          });
+          container.appendChild(button);
+        });
+
+        if (payload.autoStart !== false && targetUrl) {
+          setTimeout(function () {
+            if (location.href.indexOf(targetUrl) === -1) {
+              location.href = targetUrl;
+            }
+          }, 300);
+        }
+      })();
+    </script>
+  </body>
+</html>
