@@ -4,6 +4,10 @@ Relay Monitor 是一个面向 Windows 的 Electron 桌面工具，用来监控 `
 
 ![主仪表盘](docs/ui-preview/relay-monitor-v2-current-screen.png)
 
+## 项目来源与致谢
+
+本项目是在参考 GitHub 上 `DeepSeekMonitorWindows-master` 和 `token-monitor-main` 两个项目的思路后重新制作的新版本。Relay Monitor 重新梳理了数据来源、余额读取、桌面窗口、模块化仪表盘和敏感信息脱敏逻辑，重点面向 `ccswitch` 当前中转站的真实请求与账单口径。
+
 ## 适合谁
 
 - 使用 `ccswitch` 在多个中转站或 provider 之间切换的用户。
