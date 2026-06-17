@@ -71,7 +71,7 @@ function writeSnapshotSummary(snapshot, settings) {
     balanceMode: settings.balanceAcquisitionMode,
     provider: {
       name: snapshot.provider?.name || '',
-      baseUrl: snapshot.provider?.baseUrl || '',
+      baseUrl: snapshot.provider?.baseUrl ? 'hidden-for-docs' : '',
       model: snapshot.provider?.model || '',
       reasoningEffort: snapshot.provider?.reasoningEffort || '',
     },
@@ -79,7 +79,7 @@ function writeSnapshotSummary(snapshot, settings) {
       status: snapshot.balance?.status || 'unknown',
       amount: snapshot.balance?.amount ?? null,
       source: snapshot.balance?.source || '',
-      endpoint: snapshot.balance?.endpoint || '',
+      endpoint: snapshot.balance?.endpoint ? 'hidden-for-docs' : '',
     },
     tokens: snapshot.tokens || {},
     spend: snapshot.spend || {},
@@ -90,6 +90,22 @@ function writeSnapshotSummary(snapshot, settings) {
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, `${JSON.stringify(summary, null, 2)}\n`, 'utf8');
   return outputPath;
+}
+
+function cloneForDocs(value) {
+  return JSON.parse(JSON.stringify(value || {}));
+}
+
+function sanitizeSnapshotForDocs(snapshot) {
+  const safe = cloneForDocs(snapshot);
+  if (safe.provider) {
+    safe.provider.baseUrl = '';
+    safe.provider.endpoint = '';
+  }
+  if (safe.currentRelay) safe.currentRelay.endpoint = '';
+  if (safe.relay) safe.relay.endpoint = '';
+  safe.endpoint = '';
+  return safe;
 }
 
 async function captureWindow({ fileName, width, height, url, initScript }) {
@@ -178,6 +194,11 @@ function relayApiScript(snapshot, settings) {
       hide: () => Promise.resolve(true),
       close: () => Promise.resolve(true)
     };
+    window.addEventListener("DOMContentLoaded", () => {
+      const style = document.createElement("style");
+      style.textContent = ".dashboard-provider-lines span:nth-child(2){display:none!important}";
+      document.head.appendChild(style);
+    });
   `;
 }
 
@@ -187,7 +208,8 @@ async function main() {
   const settings = result.settings;
   const snapshot = result.snapshot;
   const snapshotSummary = writeSnapshotSummary(snapshot, settings);
-  const initScript = relayApiScript(snapshot, settings);
+  const previewSnapshot = sanitizeSnapshotForDocs(snapshot);
+  const initScript = relayApiScript(previewSnapshot, settings);
   const rendererDir = path.join(__dirname, '..', 'src', 'renderer');
   const tokenPreviewHtml = writeModulePreviewHtml(rendererDir, 'tokens');
   const captures = [];
@@ -199,16 +221,16 @@ async function main() {
     initScript,
   }));
   captures.push(await captureWindow({
-    fileName: 'relay-monitor-v2-current-token-module.png',
+    fileName: 'relay-monitor-v2-current-tokens-module.png',
     width: 420,
-    height: 340,
+    height: 380,
     url: { file: tokenPreviewHtml },
     initScript,
   }));
   captures.push(await captureWindow({
     fileName: 'relay-monitor-v2-current-companion.png',
     width: 380,
-    height: 190,
+    height: 230,
     url: { file: path.join(rendererDir, 'companion.html') },
     initScript,
   }));

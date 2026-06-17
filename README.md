@@ -2,7 +2,7 @@
 
 Relay Monitor 是一个面向 Windows 的 Electron 桌面工具，用来监控 `ccswitch` 当前中转站的真实请求、余额、Token、消费、缓存命中率、上下文消耗和平均耗时。它的目标不是估算本地客户端用了多少，而是尽量贴近中转站侧的真实账单与请求记录。
 
-![主仪表盘](docs/ui-preview/relay-monitor-light-desktop-overview.png)
+![主仪表盘](docs/ui-preview/relay-monitor-v2-current-screen.png)
 
 ## 适合谁
 
@@ -31,25 +31,17 @@ Relay Monitor 是一个面向 Windows 的 Electron 桌面工具，用来监控 `
 
 主仪表盘用于扫视当前中转站、余额、总消费、模型、最近趋势和已打开模块。界面尽量保持桌面工具的密度，不做营销首页。
 
-![主仪表盘](docs/ui-preview/relay-monitor-desktop-overview.png)
+### Token 模块
 
-### 请求详情
+Token 模块展示今日、本周、本月用量、七天趋势、缓存命中率和上下文占用，适合单独打开常驻观察。
 
-请求详情页展示最近请求的模型、推理强度、Token、费用、耗时、状态码和来源，方便核对中转站侧日志。
+![Token 模块](docs/ui-preview/relay-monitor-v2-current-tokens-module.png)
 
-![请求详情](docs/ui-preview/relay-monitor-light-desktop-request-detail.png)
+### 伴随悬浮条
 
-### 模块化窗口
+Codex 伴随悬浮条复用同一份中转站快照，显示当前 provider、今日 Token、余额状态和关键指标。
 
-功能模块可以在主窗口内浮动，也可以作为独立小窗口打开，适合只盯余额、Token 或缓存状态。
-
-![模块窗口](docs/ui-preview/relay-monitor-v2-module-settings-open.png)
-
-### 明暗主题与外观
-
-外观设置支持浅色、深色、透明度、模糊和窗口行为调整。
-
-![外观设置](docs/ui-preview/relay-monitor-appearance-settings-controls.png)
+![伴随悬浮条](docs/ui-preview/relay-monitor-v2-current-companion.png)
 
 ## 快速开始
 

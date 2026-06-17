@@ -32,13 +32,9 @@ settings-YYYYMMDD.png
 
 | 截图 | 说明 |
 | --- | --- |
-| `relay-monitor-light-desktop-overview.png` | 浅色主仪表盘。 |
-| `relay-monitor-dark-desktop-overview.png` | 深色主仪表盘。 |
-| `relay-monitor-light-desktop-request-detail.png` | 请求详情界面。 |
-| `relay-monitor-appearance-settings-controls.png` | 外观设置控件。 |
-| `relay-monitor-v2-current-token-module.png` | Token 模块。 |
+| `relay-monitor-v2-current-screen.png` | 当前程序主仪表盘截图，已隐藏中转站地址。 |
+| `relay-monitor-v2-current-tokens-module.png` | 当前程序 Token 模块截图。 |
 | `relay-monitor-v2-current-companion.png` | Codex 伴随悬浮条。 |
-| `relay-monitor-v2-module-settings-open.png` | 模块窗口和设置打开状态。 |
 
 ## 开源截图要求
 

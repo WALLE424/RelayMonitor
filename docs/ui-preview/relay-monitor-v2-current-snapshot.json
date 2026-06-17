@@ -1,9 +1,9 @@
 {
-  "capturedAt": "2026-06-16T10:48:50.821Z",
+  "capturedAt": "2026-06-17T07:46:28.494Z",
   "balanceMode": "web-session",
   "provider": {
-    "name": "demo-relay",
-    "baseUrl": "https://relay.example.cn/v1",
+    "name": "waw",
+    "baseUrl": "hidden-for-docs",
     "model": "gpt-5.5",
     "reasoningEffort": "high"
   },
@@ -11,22 +11,22 @@
     "status": "auth-required",
     "amount": null,
     "source": "web-session",
-    "endpoint": "https://relay.example.cn/console"
+    "endpoint": "hidden-for-docs"
   },
   "tokens": {
-    "cached": 123456,
-    "daily": 24567,
-    "weekly": 156789,
-    "monthly": 456789,
-    "input": 234567,
-    "output": 34567,
-    "total": 392590
+    "cached": 1809581087,
+    "daily": 12844498,
+    "weekly": 1131637263,
+    "monthly": 3017895557,
+    "input": 2033530442,
+    "output": 14707249,
+    "total": 3857818778
   },
   "spend": {
-    "today": 1.23,
-    "week": 8.76,
-    "month": 23.45,
-    "total": 67.89,
+    "today": 9.964205,
+    "week": 668.2885474999999,
+    "month": 1933.5895135,
+    "total": 2459.8242295,
     "source": "ccswitch-usage-rollups",
     "status": "fallback-request-log"
   },

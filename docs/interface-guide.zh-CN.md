@@ -12,7 +12,7 @@
 
 ## 主仪表盘
 
-![主仪表盘](ui-preview/relay-monitor-light-desktop-overview.png)
+![主仪表盘](ui-preview/relay-monitor-v2-current-screen.png)
 
 主仪表盘是应用的核心界面，承担“扫一眼就知道当前中转站是否正常”的任务。
 
@@ -32,8 +32,6 @@
 
 ## 请求详情界面
 
-![请求详情](ui-preview/relay-monitor-light-desktop-request-detail.png)
-
 请求详情用于核对最近真实请求，不从客户端本地会话估算数据。
 
 展示内容：
@@ -45,8 +43,6 @@
 - 当前 provider 关联信息。
 
 ## API 模块
-
-![API 模块](ui-preview/relay-monitor-v2-current-browser-main.png)
 
 API 模块用于展示当前 provider 和可识别的候选 provider。它只展示必要的中转站元信息，不展示明文密钥。
 
@@ -65,7 +61,7 @@ API 模块用于展示当前 provider 和可识别的候选 provider。它只展
 
 ## Token 模块
 
-![Token 模块](ui-preview/relay-monitor-v2-current-token-module.png)
+![Token 模块](ui-preview/relay-monitor-v2-current-tokens-module.png)
 
 Token 模块聚焦请求用量和缓存效率。
 
@@ -112,8 +108,6 @@ Token 模块聚焦请求用量和缓存效率。
 
 ## 设置界面
 
-![设置界面](ui-preview/relay-monitor-appearance-settings-controls.png)
-
 设置界面集中管理数据源、余额读取、外观和窗口行为。
 
 | 分组 | 选项 |
@@ -148,8 +142,6 @@ Token 模块聚焦请求用量和缓存效率。
 伴随悬浮条和主仪表盘共用同一份快照，不重复读取数据库或余额页面。
 
 ## 明暗主题和外观
-
-![深色主题](ui-preview/relay-monitor-dark-desktop-overview.png)
 
 界面支持浅色和深色两种主视觉，并提供透明度、模糊和窗口尺寸调整。
 
